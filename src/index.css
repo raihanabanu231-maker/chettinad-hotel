@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap');
 
 :root {
-  --primary: #824D29; /* Dark brown */
-  --primary-hover: #6a3e21;
+  --primary: #8B5E3C; /* Warm brown */
+  --primary-hover: #7A5235;
   --secondary: #EADDCD; /* Light beige/sand */
   --bg-color: #F8F5F0; /* Off-white background */
   --text-main: #333333;
   --text-muted: #666666;
   --white: #FFFFFF;
   --shadow-subtle: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-  --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-hover: 0 10px 20px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -5px rgba(0, 0, 0, 0.04);
   --border-color: #E8E0D5;
   --success: #81B29A;
   --danger: #E07A5F;

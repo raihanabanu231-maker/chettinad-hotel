@@ -39,11 +39,21 @@ export default function Filters() {
         <div className="filter-group">
           <div className="filter-icon"><Users size={16} /></div>
           <div className="filter-content">
-            <label>Guest</label>
+            <label>Adults</label>
             <select>
-              <option>2 Guests</option>
-              <option>1 Guest</option>
-              <option>3 Guests</option>
+              {[1, 2, 3, 4].map(num => <option key={num} value={num}>{num} Adult{num > 1 ? 's' : ''}</option>)}
+            </select>
+          </div>
+        </div>
+
+        <div className="filter-divider"></div>
+
+        <div className="filter-group">
+          <div className="filter-icon"><Users size={16} /></div>
+          <div className="filter-content">
+            <label>Children</label>
+            <select>
+              {[0, 1, 2, 3, 4].map(num => <option key={num} value={num}>{num} Child{num !== 1 ? 'ren' : ''}</option>)}
             </select>
           </div>
         </div>

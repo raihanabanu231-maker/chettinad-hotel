@@ -1,11 +1,16 @@
 .navbar {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
-  padding: 1.5rem 0;
-  background: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0));
+  z-index: 1000;
+  padding: 1.25rem 0;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
 }
 
 .nav-container {
@@ -53,20 +58,28 @@
   cursor: pointer;
   position: relative;
   padding-bottom: 4px;
+  transition: color 0.3s ease;
 }
 
-.nav-center a.active, .nav-center a:hover, .nav-center button:hover {
-  color: var(--primary);
+.nav-center a.active, .nav-center a:hover, .nav-center button.active, .nav-center button:hover {
+  color: #8B5E3C;
 }
 
-.nav-center a.active::after {
+.nav-center a::after, .nav-center button::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   height: 2px;
-  background-color: var(--primary);
+  background-color: #8B5E3C;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: center;
+}
+
+.nav-center a.active::after, .nav-center a:hover::after, .nav-center button.active::after, .nav-center button:hover::after {
+  transform: scaleX(1);
 }
 
 .nav-right {
@@ -84,9 +97,10 @@
   border: 1px solid var(--text-main);
   padding: 0.5rem 1rem;
   border-radius: 2rem;
+  transition: all 0.3s ease;
 }
 
-.nav-profile-link:hover {
-  color: var(--primary);
-  border-color: var(--primary);
+.nav-profile-link:hover, .nav-profile-link.active {
+  color: #8B5E3C;
+  border-color: #8B5E3C;
 }

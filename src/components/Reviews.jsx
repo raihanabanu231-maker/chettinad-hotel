@@ -1,5 +1,6 @@
 import React from 'react'
 import { Star, ArrowRight } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 import './Reviews.css'
 
 const reviews = [
@@ -27,11 +28,13 @@ const reviews = [
 ];
 
 export default function Reviews() {
+  const navigate = useNavigate();
+
   return (
     <section id="reviews" className="reviews-section">
       <div className="section-header">
         <h2 className="section-title-left">Guest Reviews</h2>
-        <button className="view-all-btn">
+        <button className="view-all-btn" onClick={() => navigate('/reviews')}>
           View All Reviews <ArrowRight size={16} />
         </button>
       </div>
@@ -61,7 +64,7 @@ export default function Reviews() {
           </div>
           <h4>Share your experience</h4>
           <p>We'd love to hear from you!</p>
-          <button className="btn-primary" style={{marginTop: '1rem', width: '100%'}}>Write a Review</button>
+          <button className="btn-primary" style={{marginTop: '1rem', width: '100%'}} onClick={() => navigate('/reviews')}>Write a Review</button>
         </div>
       </div>
     </section>
