@@ -1,0 +1,88 @@
+.filters-section {
+  background: var(--secondary);
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  margin-top: 5rem; /* Space for the floating booking widget */
+  margin-bottom: 3rem;
+}
+
+.filters-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+}
+
+.filter-icon {
+  color: var(--text-muted);
+}
+
+.filter-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-content label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.filter-content select {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  cursor: pointer;
+}
+
+.filter-content select:focus {
+  outline: none;
+}
+
+.filter-divider {
+  width: 1px;
+  height: 30px;
+  background: var(--border-color);
+  margin: 0 1.5rem;
+}
+
+.clear-filters-btn {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  height: 40px;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.25rem;
+  white-space: nowrap;
+}
+
+.clear-filters-btn:hover {
+  background: var(--white);
+  color: var(--text-main);
+}
+
+@media (max-width: 768px) {
+  .filters-container {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .filter-divider {
+    display: none;
+  }
+  .filter-group {
+    min-width: 45%;
+  }
+}

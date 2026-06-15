@@ -1,0 +1,115 @@
+.hero {
+  height: 80vh;
+  min-height: 600px;
+  background-image: url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80'); /* Need a better palace image but this serves as placeholder */
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.hero-overlay {
+  background: linear-gradient(to right, rgba(250, 247, 242, 0.9) 0%, rgba(250, 247, 242, 0.4) 50%, rgba(0, 0, 0, 0) 100%);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-content-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  height: 100%;
+}
+
+.hero-title {
+  color: var(--primary);
+  font-size: 4rem;
+  line-height: 1.1;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  text-shadow: none; /* Changed from previous */
+  padding-top: 4rem; /* to account for absolute navbar */
+}
+
+.booking-widget {
+  background: var(--white);
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  box-shadow: var(--shadow-hover);
+  width: 100%;
+  position: absolute;
+  bottom: -2.5rem; /* floating effect */
+  left: 1rem;
+  right: 1rem;
+  width: calc(100% - 2rem);
+  z-index: 10;
+}
+
+.widget-field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.widget-field label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.input-with-icon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.input-with-icon input, .input-with-icon select {
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-main);
+  background: transparent;
+}
+
+.input-with-icon input:focus, .input-with-icon select:focus {
+  outline: none;
+}
+
+.widget-divider {
+  width: 1px;
+  height: 40px;
+  background: var(--border-color);
+}
+
+.widget-btn {
+  height: 50px;
+  padding: 0 2rem;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  .booking-widget {
+    flex-direction: column;
+    align-items: stretch;
+    position: static;
+    margin-top: 2rem;
+    width: 100%;
+  }
+  .widget-divider {
+    display: none;
+  }
+  .widget-btn {
+    margin-top: 1rem;
+  }
+}

@@ -1,0 +1,49 @@
+.room-list-container {
+  position: relative;
+  margin-bottom: 4rem;
+}
+
+.room-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.carousel-nav-btn {
+  position: absolute;
+  right: -2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-subtle);
+  color: var(--text-main);
+  z-index: 10;
+}
+
+.carousel-nav-btn:hover {
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+}
+
+@media (max-width: 1024px) {
+  .room-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .carousel-nav-btn {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .room-grid {
+    grid-template-columns: 1fr;
+  }
+}
