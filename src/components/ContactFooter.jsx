@@ -33,7 +33,7 @@ export default function ContactFooter() {
         <div className="container footer-grid">
           <div className="footer-brand">
             <div className="footer-logo" style={{alignItems: 'center'}}>
-              <img src={logoImg} alt="Hotel Meyyappaa Logo" style={{ height: '120px', marginRight: '16px', objectFit: 'contain' }} />
+              <img src={logoImg} alt="Hotel Meyyappaa Logo" style={{ height: '120px', transform: 'scale(2.5)', margin: '0 30px 0 15px', objectFit: 'contain' }} />
               <div className="logo-text">
                 <h1>Hotel</h1>
                 <span>MEYYAPPAA</span>

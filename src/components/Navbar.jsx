@@ -68,7 +68,7 @@ export default function Navbar() {
       <div className="container nav-container">
         <Link to="/" className="nav-logo" onClick={() => window.scrollTo(0, 0)}>
           {/* Using the uploaded logo */}
-          <img src={logoImg} alt="Hotel Meyyappaa Logo" style={{ height: '80px', marginRight: '16px', objectFit: 'contain' }} />
+          <img src={logoImg} alt="Hotel Meyyappaa Logo" style={{ height: '80px', transform: 'scale(2.2)', margin: '0 20px 0 10px', objectFit: 'contain' }} />
           <div className="logo-text">
             <h1>Hotel</h1>
             <span>MEYYAPPAA</span>
