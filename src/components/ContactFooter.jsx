@@ -17,7 +17,7 @@ export default function ContactFooter() {
           
           <div className="contact-item">
             <Mail size={18} color="var(--primary)" />
-            <span>info@chettinadstays.com</span>
+            <span>info@hotelmeyyappaa.com</span>
           </div>
           
           <div className="contact-item">
@@ -34,8 +34,8 @@ export default function ContactFooter() {
             <div className="footer-logo">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{color: 'var(--secondary)'}}><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="m8 14 4-4 4 4"></path></svg>
               <div className="logo-text">
-                <h1>Chettinad</h1>
-                <span>STAYS</span>
+                <h1>Hotel</h1>
+                <span>MEYYAPPAA</span>
               </div>
             </div>
             <p className="footer-desc">
@@ -76,7 +76,7 @@ export default function ContactFooter() {
         </div>
 
         <div className="footer-bottom">
-          <p>© 2025 Chettinad Stays. All rights reserved.</p>
+          <p>© 2025 Hotel Meyyappaa. All rights reserved.</p>
         </div>
       </footer>
     </>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Wind, BedDouble, CarFront, Wifi } from 'lucide-react'
+import { Wind, CarFront, Wifi, Coffee } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import './RoomCard.css'
 
@@ -15,24 +15,24 @@ export default function RoomCard({ room, onViewDetails }) {
           className="room-image"
         />
         <div className="room-badges">
-          <span className="room-type-label">{room.type}</span>
-          <span className={`room-status-badge ${room.status.toLowerCase().replace(' ', '-')}`}>
-            {room.status}
-          </span>
+          <span className="room-status-badge available">Available</span>
         </div>
       </div>
 
       <div className="room-card-body">
-        <div className="room-amenities">
-          <Wind size={18} />
-          <BedDouble size={18} />
-          <CarFront size={18} />
-          <Wifi size={18} />
+        <div className="room-card-left">
+          <h3 className="room-card-title">{room.type}</h3>
+          <div className="room-amenities">
+            {room.hasAC && <Wind size={18} title="Air Conditioned" />}
+            <CarFront size={18} title="Parking" />
+            <Wifi size={18} title="Free WiFi" />
+            <Coffee size={18} title="Breakfast Included" />
+          </div>
         </div>
         
-        <div className="room-price-info">
+        <div className="room-card-right">
           <span className="price-amount">₹ {room.price.toLocaleString('en-IN')}</span>
-          <span className="price-tax">+ Taxes</span>
+          <span className="price-tax">Inclusive of 5% GST</span>
         </div>
       </div>
     </div>

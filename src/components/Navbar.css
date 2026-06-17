@@ -13,6 +13,14 @@
   transition: all 0.3s ease;
 }
 
+.navbar.scrolled {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: var(--shadow-hover);
+}
+
 .nav-container {
   display: flex;
   justify-content: space-between;
@@ -57,29 +65,18 @@
   border: none;
   cursor: pointer;
   position: relative;
-  padding-bottom: 4px;
-  transition: color 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  transition: all 0.3s ease;
 }
 
 .nav-center a.active, .nav-center a:hover, .nav-center button.active, .nav-center button:hover {
-  color: #8B5E3C;
+  background-color: var(--primary);
+  color: var(--white);
 }
 
 .nav-center a::after, .nav-center button::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background-color: #8B5E3C;
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-  transform-origin: center;
-}
-
-.nav-center a.active::after, .nav-center a:hover::after, .nav-center button.active::after, .nav-center button:hover::after {
-  transform: scaleX(1);
+  display: none;
 }
 
 .nav-right {
@@ -101,6 +98,41 @@
 }
 
 .nav-profile-link:hover, .nav-profile-link.active {
-  color: #8B5E3C;
-  border-color: #8B5E3C;
+  background-color: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.5rem;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 0;
+  border-radius: 16px;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.profile-dropdown a,
+.profile-dropdown button {
+  padding: 0.75rem 1.5rem;
+  text-align: left;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-main);
+  background: transparent;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.profile-dropdown a:hover,
+.profile-dropdown button:hover {
+  background-color: rgba(139, 94, 60, 0.1);
+  color: var(--primary);
 }
