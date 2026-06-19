@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  padding: 0.75rem 0;
+  padding: 0.4rem 0;
   background: var(--bg-neo);
   border-bottom: 1px solid var(--border-color);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
@@ -31,7 +31,7 @@
 
 .nav-center {
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .nav-center a, .nav-center button {
@@ -42,7 +42,7 @@
   border: none;
   cursor: pointer;
   position: relative;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.8rem;
   border-radius: 2rem;
   transition: all 0.3s ease;
 }
@@ -74,7 +74,7 @@
   color: var(--text-main);
   gap: 0.5rem;
   border: 1px solid var(--text-main);
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.8rem;
   border-radius: 2rem;
   transition: all 0.3s ease;
 }

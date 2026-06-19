@@ -4,16 +4,32 @@
 
 .explore-layout {
   display: grid;
-  grid-template-columns: 1fr 400px;
-  gap: 3rem;
+  grid-template-columns: 68% 30%;
+  gap: 2%;
   align-items: start;
+}
+
+.explore-header {
+  margin-bottom: 2rem;
 }
 
 .section-title-left {
   font-size: 2.5rem;
   font-family: 'Cormorant Garamond', serif;
   color: var(--primary);
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.title-divider {
+  width: 60px;
+  height: 3px;
+  background: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.explore-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted);
 }
 
 /* CAROUSEL */
@@ -39,24 +55,29 @@
 .carousel-card {
   min-width: 280px;
   max-width: 280px;
+  background: var(--white);
+  border: 1px solid rgba(139, 94, 60, 0.1); /* Subtle brown tint */
   border-radius: 12px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   cursor: pointer;
   transition: all 0.3s ease;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
 }
 
 .carousel-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.05);
-  border-color: var(--primary);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+  border-color: rgba(139, 94, 60, 0.3);
 }
 
 .carousel-card img {
   width: 100%;
-  height: 180px;
+  height: 220px;
   object-fit: cover;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
 .carousel-info {
@@ -117,17 +138,80 @@
   right: -20px;
 }
 
-/* CAB BOOKING CARD */
-.cab-booking-card {
+/* EXPERIENCE CATEGORIES */
+.experience-categories {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.experience-card {
+  background: var(--white);
   border-radius: 16px;
-  padding: 2rem;
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
+}
+
+.experience-card:hover {
+  transform: translateY(-4px);
+}
+
+.exp-icon {
+  background: rgba(139, 94, 60, 0.1);
+  color: var(--primary);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem auto;
+}
+
+.experience-card h4 {
+  font-size: 1rem;
+  color: var(--text-main);
+  margin-bottom: 0.5rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.experience-card p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* CAB BOOKING CARD */
+.kpm-card {
+  background: var(--white);
+  border-radius: 24px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
-.cab-header {
-  text-align: center;
+.cab-header-new h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  color: var(--primary);
+  margin-bottom: 0.25rem;
+}
+
+.cab-header-new p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.cab-branding {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .kpm-logo {
@@ -227,8 +311,8 @@
 }
 
 .book-cab-btn {
-  background: var(--primary);
-  color: var(--white);
+  background: #8B5E3C;
+  color: #FFFFFF;
   padding: 1.25rem;
   border-radius: 8px;
   font-size: 1.1rem;
@@ -240,7 +324,7 @@
 }
 
 .book-cab-btn:hover {
-  background: var(--primary-hover);
+  background: #7A5235;
   transform: translateY(-2px);
   box-shadow: 0 8px 15px rgba(139, 94, 60, 0.3);
 }
@@ -250,6 +334,16 @@
     grid-template-columns: 1fr;
   }
   
+  .experience-categories {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
   .carousel-arrow.left { left: 0; }
   .carousel-arrow.right { right: 0; }
+}
+
+@media (max-width: 768px) {
+  .experience-categories {
+    grid-template-columns: 1fr;
+  }
 }

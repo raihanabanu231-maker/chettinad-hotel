@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { ChevronRight, ChevronLeft, CheckCircle } from 'lucide-react'
+import { ChevronRight, ChevronLeft, CheckCircle, Landmark, UtensilsCrossed, ShoppingBag, Sparkles } from 'lucide-react'
 import kpmLogo from '../assets/kpm-logo.png'
 import './ExploreChettinad.css'
 
@@ -82,7 +82,11 @@ export default function ExploreChettinad() {
         <div className="explore-layout">
           {/* LEFT SIDE - Attractions */}
           <div className="explore-left">
-            <h2 className="section-title-left">Explore Chettinad</h2>
+            <div className="explore-header">
+              <h2 className="section-title-left">Explore Chettinad</h2>
+              <div className="title-divider"></div>
+              <p className="explore-subtitle">Discover the rich heritage, culture and timeless beauty of Chettinad.</p>
+            </div>
             
             <div className="carousel-container">
               {showLeftArrow && (
@@ -114,14 +118,41 @@ export default function ExploreChettinad() {
                 </button>
               )}
             </div>
+
+            {/* Experience Category Section */}
+            <div className="experience-categories">
+              <div className="experience-card">
+                <div className="exp-icon"><Landmark size={24} /></div>
+                <h4>Heritage & Culture</h4>
+                <p>Explore centuries of royal heritage.</p>
+              </div>
+              <div className="experience-card">
+                <div className="exp-icon"><UtensilsCrossed size={24} /></div>
+                <h4>Local Cuisine</h4>
+                <p>Enjoy authentic Chettinad delicacies.</p>
+              </div>
+              <div className="experience-card">
+                <div className="exp-icon"><ShoppingBag size={24} /></div>
+                <h4>Shopping</h4>
+                <p>Handicrafts, antiques and local specialties.</p>
+              </div>
+              <div className="experience-card">
+                <div className="exp-icon"><Sparkles size={24} /></div>
+                <h4>Memorable Experiences</h4>
+                <p>Create unforgettable memories.</p>
+              </div>
+            </div>
           </div>
 
           {/* RIGHT SIDE - Cab Booking */}
           <div className="explore-right">
-            <div className="cab-booking-card neo-panel">
-              <div className="cab-header">
+            <div className="cab-booking-card kpm-card">
+              <div className="cab-header-new">
+                <h3>Travel Around Chettinad</h3>
+                <p>Book a comfortable ride and explore more.</p>
+              </div>
+              <div className="cab-branding">
                 <img src={kpmLogo} alt="KPM Travels" className="kpm-logo" />
-                <p className="cab-subtitle">Reliable Local Travel Partner</p>
               </div>
 
               <div className="cab-hero">
@@ -165,6 +196,9 @@ export default function ExploreChettinad() {
                 </div>
               </div>
 
+              <div className="cab-terms" style={{textAlign: 'center', fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '-0.5rem', marginTop: '-0.5rem'}}>
+                *Terms and Conditions apply. Subject to vehicle availability.
+              </div>
               <button className="book-cab-btn">Book a Cab</button>
             </div>
           </div>
