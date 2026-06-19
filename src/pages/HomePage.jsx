@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Hero from '../components/Hero'
 import Filters from '../components/Filters'
 import RoomList from '../components/RoomList'
@@ -7,12 +7,19 @@ import Reviews from '../components/Reviews'
 import ContactFooter from '../components/ContactFooter'
 
 export default function HomePage() {
+  const [filters, setFilters] = useState({
+    roomType: 'All Rooms',
+    price: '₹ Min - ₹ Max',
+    adults: '1',
+    children: '0'
+  });
+
   return (
     <div>
       <Hero />
       <div className="container">
-        <Filters />
-        <RoomList />
+        <Filters filters={filters} setFilters={setFilters} />
+        <RoomList filters={filters} />
       </div>
       <ExploreChettinad />
       <Reviews />

@@ -2,6 +2,20 @@
   padding: 3rem 0;
 }
 
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.section-title-left {
+  font-size: 2.5rem;
+  margin: 0;
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--primary);
+}
+
 .view-all-btn {
   display: flex;
   align-items: center;

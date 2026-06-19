@@ -128,8 +128,8 @@ button {
   max-width: 800px;
   max-height: 90vh;
   overflow-y: auto;
-  border-radius: 0.5rem;
-  box-shadow: var(--shadow-hover);
+  border-radius: 24px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.12);
   position: relative;
 }
 
@@ -199,11 +199,8 @@ label {
 
 /* Neomorphism Design System */
 .neo-panel {
-  background: var(--bg-neo-card);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 20px;
-  box-shadow: 
-    8px 8px 16px var(--shadow-neo-dark),
-    -8px -8px 16px var(--shadow-neo-light);
+  background: #FFFFFF;
+  border-radius: 24px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.12);
   transition: all 0.3s ease;
 }

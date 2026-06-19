@@ -13,7 +13,7 @@ const mockRooms = [
   { id: 6, type: 'Heritage Single Room', price: 1500, images: ['https://images.unsplash.com/photo-1590490359683-658d3d23f972?auto=format&fit=crop&q=80'], description: 'Cozy traditional room for solo travelers.', maxOccupancy: 1, roomSize: '80 sq ft', hasAC: true }
 ];
 
-export default function RoomList() {
+export default function RoomList({ filters }) {
   const [selectedRoom, setSelectedRoom] = useState(null);
   const carouselRef = useRef(null);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
@@ -30,9 +30,33 @@ export default function RoomList() {
     if (carouselRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
       setShowLeftArrow(scrollLeft > 0);
-      setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 10);
+      setShowRightArrow(scrollWidth > clientWidth && scrollLeft < scrollWidth - clientWidth - 10);
     }
   };
+
+  const filteredRooms = mockRooms.filter(room => {
+    if (!filters) return true;
+
+    // Room Type filter
+    if (filters.roomType !== 'All Rooms' && room.type !== filters.roomType) {
+      return false;
+    }
+
+    // Price filter
+    if (filters.price !== '₹ Min - ₹ Max') {
+      if (filters.price === 'Under ₹2000' && room.price >= 2000) return false;
+      if (filters.price === '₹2000 - ₹3000' && (room.price < 2000 || room.price > 3000)) return false;
+      if (filters.price === 'Above ₹3000' && room.price <= 3000) return false;
+    }
+
+    // Occupancy filter
+    const requiredCapacity = parseInt(filters.adults) + parseInt(filters.children);
+    if (requiredCapacity > room.maxOccupancy) {
+      return false;
+    }
+
+    return true;
+  });
 
   useEffect(() => {
     handleScrollEvent();
@@ -49,13 +73,18 @@ export default function RoomList() {
       )}
 
       <div className="room-carousel" ref={carouselRef} onScroll={handleScrollEvent}>
-        {mockRooms.map(room => (
+        {filteredRooms.map(room => (
           <RoomCard 
             key={room.id} 
             room={room} 
             onViewDetails={(r) => setSelectedRoom(r)} 
           />
         ))}
+        {filteredRooms.length === 0 && (
+          <div style={{ padding: '3rem', textAlign: 'center', width: '100%', color: 'var(--text-muted)' }}>
+            No rooms match your filter criteria. Please try clearing the filters.
+          </div>
+        )}
       </div>
 
       {showRightArrow && (
