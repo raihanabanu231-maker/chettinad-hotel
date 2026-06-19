@@ -49,7 +49,7 @@ export default function RoomDetailsModal({ room, onClose }) {
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content room-details-modal glass-panel" onClick={e => e.stopPropagation()}>
+      <div className="modal-content room-details-modal neo-panel" onClick={e => e.stopPropagation()}>
         <div className="modal-header-sticky">
           <button className="modal-close-sticky" onClick={onClose}><X size={20} /></button>
         </div>
@@ -82,7 +82,7 @@ export default function RoomDetailsModal({ room, onClose }) {
             <h2 className="room-popup-title">{room.type}</h2>
             <p className="room-tagline">{room.description}</p>
 
-            <div className="info-card glass-panel">
+            <div className="info-card neo-panel">
               <div className="info-item">
                 <Users size={20} color="var(--primary)"/>
                 <div>

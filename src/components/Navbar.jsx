@@ -64,15 +64,11 @@ export default function Navbar() {
   };
 
   return (
-    <nav className={`navbar ${isScrolled ? 'scrolled glass-panel' : ''}`}>
+    <nav className={`navbar ${isScrolled ? 'scrolled neo-panel' : ''}`}>
       <div className="container nav-container">
         <Link to="/" className="nav-logo" onClick={() => window.scrollTo(0, 0)}>
           {/* Using the uploaded logo */}
-          <img src={logoImg} alt="Hotel Meyyappaa Logo" style={{ height: '80px', transform: 'scale(2.2)', margin: '0 20px 0 10px', objectFit: 'contain' }} />
-          <div className="logo-text">
-            <h1>Hotel</h1>
-            <span>MEYYAPPAA</span>
-          </div>
+          <img src={logoImg} alt="Hotel Meyyappaa Logo" style={{ height: '60px', width: 'auto', objectFit: 'contain', margin: '0' }} />
         </Link>
         <div className="nav-center">
           <a href="/" onClick={(e) => handleNavClick(e, '/')} className={isActive('/')}>Home</a>
@@ -92,7 +88,7 @@ export default function Navbar() {
           </button>
           
           {isProfileOpen && (
-            <div className="profile-dropdown glass-panel">
+            <div className="profile-dropdown neo-panel">
               <Link to="/profile" onClick={() => setIsProfileOpen(false)}>View Profile</Link>
               <button onClick={() => { setIsProfileOpen(false); window.dispatchEvent(new Event('openChangePassword')); }}>Change Password</button>
               <button onClick={() => setIsProfileOpen(false)}>Logout</button>

@@ -1,93 +1,255 @@
 .explore-section {
-  padding: 3rem 0;
+  padding: 4rem 0;
 }
 
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
+.explore-layout {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 3rem;
+  align-items: start;
 }
 
 .section-title-left {
-  font-size: 2rem;
-  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-family: 'Cormorant Garamond', serif;
   color: var(--primary);
+  margin-bottom: 2rem;
 }
 
-.explore-grid-container {
+/* CAROUSEL */
+.carousel-container {
   position: relative;
+  width: 100%;
 }
 
-.explore-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 1rem;
+.carousel-track {
+  display: flex;
+  gap: 1.5rem;
   overflow-x: auto;
-  padding-bottom: 1rem;
+  scroll-behavior: smooth;
+  padding: 1rem 0 2rem 0;
+  -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 }
 
-.explore-grid::-webkit-scrollbar {
+.carousel-track::-webkit-scrollbar {
   display: none;
 }
 
-.explore-card {
-  background: var(--white);
-  border-radius: 0.5rem;
+.carousel-card {
+  min-width: 280px;
+  max-width: 280px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: var(--shadow-subtle);
-  cursor: pointer;
-  min-width: 180px;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.explore-card img {
+.carousel-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.05);
+  border-color: var(--primary);
+}
+
+.carousel-card img {
   width: 100%;
-  height: 120px;
+  height: 180px;
   object-fit: cover;
 }
 
-.explore-info {
-  padding: 1rem;
+.carousel-info {
+  padding: 1.25rem;
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
-.explore-info h3 {
-  font-size: 0.85rem;
-  margin-bottom: 0.25rem;
-  color: var(--text-main);
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
+.carousel-info h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary);
 }
 
-.explore-distance {
-  font-size: 0.7rem;
+.carousel-distance {
+  font-size: 0.8rem;
   color: var(--text-muted);
+  font-weight: 500;
   margin-bottom: 0.75rem;
 }
 
-.explore-info p {
-  color: var(--text-muted);
-  font-size: 0.75rem;
-  line-height: 1.4;
+.carousel-info p {
+  color: var(--text-main);
+  font-size: 0.85rem;
+  line-height: 1.5;
 }
 
-.explore-nav {
-  right: -1.5rem;
+.carousel-arrow {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: var(--white);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  color: var(--primary);
+  opacity: 0.9;
+  transition: all 0.3s ease;
+}
+
+.carousel-arrow:hover {
+  background: var(--primary);
+  color: var(--white);
+  opacity: 1;
+}
+
+.carousel-arrow.left {
+  left: -20px;
+}
+
+.carousel-arrow.right {
+  right: -20px;
+}
+
+/* CAB BOOKING CARD */
+.cab-booking-card {
+  border-radius: 16px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cab-header {
+  text-align: center;
+}
+
+.kpm-logo {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
+.cab-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cab-hero-img {
+  width: 100%;
+  height: 160px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.cab-services {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.service-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+.service-item svg {
+  color: var(--success);
+}
+
+.cab-pricing {
+  display: flex;
+  gap: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  padding: 1.5rem 0;
+}
+
+.pricing-column {
+  flex: 1;
+}
+
+.pricing-column h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+  border-bottom: 1px dashed var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+.pricing-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pricing-column li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+.pricing-column li span {
+  color: var(--text-muted);
+}
+
+.pricing-extra {
+  margin-top: 1rem;
+  text-align: center;
+  background: var(--bg-neo);
+  padding: 0.5rem;
+  border-radius: 8px;
+}
+
+.pricing-extra small {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.book-cab-btn {
+  background: var(--primary);
+  color: var(--white);
+  padding: 1.25rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.book-cab-btn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(139, 94, 60, 0.3);
 }
 
 @media (max-width: 1024px) {
-  .explore-grid {
-    grid-template-columns: repeat(4, 1fr);
+  .explore-layout {
+    grid-template-columns: 1fr;
   }
-}
-
-@media (max-width: 768px) {
-  .explore-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  
+  .carousel-arrow.left { left: 0; }
+  .carousel-arrow.right { right: 0; }
 }

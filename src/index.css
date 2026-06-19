@@ -13,6 +13,10 @@
   --border-color: #E8E0D5;
   --success: #81B29A;
   --danger: #E07A5F;
+  --bg-neo: #F8F5F0;
+  --bg-neo-card: #FAF8F5;
+  --shadow-neo-light: #ffffff;
+  --shadow-neo-dark: #e0dcd3;
 }
 
 * {
@@ -116,7 +120,6 @@ button {
   align-items: center;
   z-index: 1000;
   padding: 2rem;
-  backdrop-filter: blur(4px);
 }
 
 .modal-content {
@@ -134,20 +137,28 @@ button {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--white);
   border-radius: 50%;
-  width: 2rem;
-  height: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--shadow-subtle);
   z-index: 10;
   color: var(--text-main);
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
 }
 .modal-close:hover {
+  background: var(--white);
+  color: var(--text-main);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.modal-close:active {
   background: var(--primary);
   color: var(--white);
+  transform: translateY(0);
 }
 
 input, select, textarea {
@@ -186,12 +197,13 @@ label {
   margin: 1rem auto 0;
 }
 
-/* Glassmorphism Design System */
-.glass-panel {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+/* Neomorphism Design System */
+.neo-panel {
+  background: var(--bg-neo-card);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 20px;
-  box-shadow: var(--shadow-hover);
+  box-shadow: 
+    8px 8px 16px var(--shadow-neo-dark),
+    -8px -8px 16px var(--shadow-neo-light);
+  transition: all 0.3s ease;
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Phone, Mail, MapPin } from 'lucide-react'
+import { Phone, Mail, MapPin, Facebook, Instagram, MessageCircle } from 'lucide-react'
 import logoImg from '../assets/logo.png'
 import './ContactFooter.css'
 
@@ -13,7 +13,7 @@ export default function ContactFooter() {
           
           <div className="contact-item">
             <Phone size={18} color="var(--primary)" />
-            <span>+91 98765 43210</span>
+            <span>099650 99656</span>
           </div>
           
           <div className="contact-item">
@@ -23,7 +23,7 @@ export default function ContactFooter() {
           
           <div className="contact-item">
             <MapPin size={18} color="var(--primary)" />
-            <span>123, Heritage Street, Karaikudi, Tamil Nadu 630001</span>
+            <span>315/15, MAM Building, Sekkalai Rd, Karaikudi, Tamil Nadu 630001</span>
           </div>
         </div>
       </div>
@@ -33,11 +33,7 @@ export default function ContactFooter() {
         <div className="container footer-grid">
           <div className="footer-brand">
             <div className="footer-logo" style={{alignItems: 'center'}}>
-              <img src={logoImg} alt="Hotel Meyyappaa Logo" style={{ height: '120px', transform: 'scale(2.5)', margin: '0 30px 0 15px', objectFit: 'contain' }} />
-              <div className="logo-text">
-                <h1>Hotel</h1>
-                <span>MEYYAPPAA</span>
-              </div>
+              <img src={logoImg} alt="Hotel Meyyappaa Logo" style={{ height: '80px', width: 'auto', margin: '0', objectFit: 'contain' }} />
             </div>
             <p className="footer-desc">
               Experience the warmth of Chettinad hospitality with modern comfort and traditional charm.
@@ -68,10 +64,10 @@ export default function ContactFooter() {
           <div className="footer-socials">
             <h4>Follow Us</h4>
             <div className="social-icons">
-              <a href="#" className="social-icon">FB</a>
-              <a href="#" className="social-icon">IG</a>
-              <a href="#" className="social-icon">WA</a>
-              <a href="#" className="social-icon">EM</a>
+              <a href="#" className="social-icon"><Facebook size={20} /></a>
+              <a href="#" className="social-icon"><Instagram size={20} /></a>
+              <a href="#" className="social-icon"><MessageCircle size={20} /></a>
+              <a href="#" className="social-icon"><Mail size={20} /></a>
             </div>
           </div>
         </div>

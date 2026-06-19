@@ -31,14 +31,21 @@
   cursor: pointer;
   box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
   color: var(--text-main);
-  transition: all 0.2s;
-  margin-top: -20px;
-  margin-right: -10px;
+  transition: all 0.3s ease;
+  margin: 0;
 }
 
 .modal-close-sticky:hover {
+  background: var(--white);
+  color: var(--text-main);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.modal-close-sticky:active {
   background: var(--primary);
   color: var(--white);
+  transform: translateY(0);
 }
 
 /* Gallery */

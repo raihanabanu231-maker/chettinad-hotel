@@ -1,90 +1,175 @@
-import React, { useState } from 'react'
-import { ChevronRight } from 'lucide-react'
-import CabBookingModal from './CabBookingModal'
+import React, { useRef, useState } from 'react'
+import { ChevronRight, ChevronLeft, CheckCircle } from 'lucide-react'
+import kpmLogo from '../assets/kpm-logo.png'
 import './ExploreChettinad.css'
 
 const attractions = [
   {
     id: 1,
     name: 'Chettinad Palace',
-    distance: '2.1 km',
+    distance: '14.4 km',
     image: 'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&q=80',
-    description: 'A magnificent palace showcasing Chettinad architecture and heritage.'
+    description: 'Experience the grandeur of Chettinad royal architecture and timeless heritage.'
   },
   {
     id: 2,
     name: 'Chettinad Streets',
-    distance: '1.8 km',
+    distance: '14 km',
     image: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&q=80',
-    description: 'Walk through the elegant streets lined with ancestral mansions.'
+    description: 'Walk through iconic heritage streets lined with historic mansions.'
   },
   {
     id: 3,
     name: 'Athangudi Palace',
-    distance: '12 km',
+    distance: '15 km',
     image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80',
-    description: 'Known for its vintage tiles and royal heritage experience.'
+    description: 'Discover elegant Chettinad craftsmanship and cultural richness.'
   },
   {
     id: 4,
-    name: 'Tiles Making',
+    name: 'Athangudi Tiles Making',
     distance: '15 km',
     image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80',
-    description: 'See the artisans create famous Athangudi tiles with traditional methods.'
+    description: 'Watch artisans create the world-famous handcrafted Athangudi tiles.'
   },
   {
     id: 5,
-    name: 'Car Museum in Pillayarpatti',
-    distance: '20 km',
-    image: 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&q=80',
-    description: 'Explore a vintage car collection of rare and classic beauties.'
+    name: 'Kundrakudi Temple',
+    distance: '12 km',
+    image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&q=80',
+    description: 'Visit the scenic hilltop Murugan temple overlooking beautiful landscapes.'
   },
   {
     id: 6,
-    name: 'Pillayarpatti Kovil',
-    distance: '22 km',
+    name: 'Pillayarpatti Temple',
+    distance: '14 km',
     image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&q=80',
-    description: 'Ancient rock-cut temple dedicated to Lord Ganesha.'
+    description: 'Explore the ancient rock-cut temple dedicated to Lord Ganesha.'
+  },
+  {
+    id: 7,
+    name: 'Vintage Car Museum, Pillayarpatti',
+    distance: '14 km',
+    image: 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&q=80',
+    description: 'See a rare collection of beautifully preserved vintage automobiles.'
   }
 ];
 
 export default function ExploreChettinad() {
-  const [selectedPlace, setSelectedPlace] = useState(null);
+  const scrollRef = useRef(null);
+  const [showLeftArrow, setShowLeftArrow] = useState(false);
+  const [showRightArrow, setShowRightArrow] = useState(true);
+
+  const handleScroll = () => {
+    if (scrollRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+      setShowLeftArrow(scrollLeft > 0);
+      setShowRightArrow(Math.ceil(scrollLeft + clientWidth) < scrollWidth);
+    }
+  };
+
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      const { clientWidth } = scrollRef.current;
+      const scrollAmount = direction === 'left' ? -clientWidth / 1.5 : clientWidth / 1.5;
+      scrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
 
   return (
     <section id="explore" className="explore-section">
-      <div className="section-header">
-        <h2 className="section-title-left">Explore Chettinad</h2>
-      </div>
-      
-      <div className="explore-grid-container">
-        <div className="explore-grid">
-          {attractions.map(place => (
-            <div 
-              key={place.id} 
-              className="explore-card" 
-              onClick={() => setSelectedPlace(place)}
-            >
-              <img src={place.image} alt={place.name} />
-              <div className="explore-info">
-                <h3>{place.name}</h3>
-                <span className="explore-distance">{place.distance}</span>
-                <p>{place.description}</p>
+      <div className="container">
+        <div className="explore-layout">
+          {/* LEFT SIDE - Attractions */}
+          <div className="explore-left">
+            <h2 className="section-title-left">Explore Chettinad</h2>
+            
+            <div className="carousel-container">
+              {showLeftArrow && (
+                <button className="carousel-arrow left" onClick={() => scroll('left')}>
+                  <ChevronLeft size={24} />
+                </button>
+              )}
+              
+              <div 
+                className="carousel-track" 
+                ref={scrollRef} 
+                onScroll={handleScroll}
+              >
+                {attractions.map(place => (
+                  <div key={place.id} className="carousel-card neo-panel">
+                    <img src={place.image} alt={place.name} />
+                    <div className="carousel-info">
+                      <h3>{place.name}</h3>
+                      <span className="carousel-distance">Distance: {place.distance}</span>
+                      <p>{place.description}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            </div>
-          ))}
-        </div>
-        <button className="carousel-nav-btn right explore-nav">
-          <ChevronRight size={24} />
-        </button>
-      </div>
 
-      {selectedPlace && (
-        <CabBookingModal 
-          place={selectedPlace} 
-          onClose={() => setSelectedPlace(null)} 
-        />
-      )}
+              {showRightArrow && (
+                <button className="carousel-arrow right" onClick={() => scroll('right')}>
+                  <ChevronRight size={24} />
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* RIGHT SIDE - Cab Booking */}
+          <div className="explore-right">
+            <div className="cab-booking-card neo-panel">
+              <div className="cab-header">
+                <img src={kpmLogo} alt="KPM Travels" className="kpm-logo" />
+                <p className="cab-subtitle">Reliable Local Travel Partner</p>
+              </div>
+
+              <div className="cab-hero">
+                <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80" alt="Travel Vehicles" className="cab-hero-img" />
+              </div>
+
+              <div className="cab-services">
+                <div className="service-item"><CheckCircle size={16} /> Local Sightseeing</div>
+                <div className="service-item"><CheckCircle size={16} /> Temple Tours</div>
+                <div className="service-item"><CheckCircle size={16} /> Airport Pickup</div>
+                <div className="service-item"><CheckCircle size={16} /> Heritage Tours</div>
+                <div className="service-item"><CheckCircle size={16} /> Family Travel</div>
+              </div>
+
+              <div className="cab-pricing">
+                <div className="pricing-column">
+                  <h4>4 Seater</h4>
+                  <ul>
+                    <li><span>3 Hrs / 30 Km</span> ₹1200</li>
+                    <li><span>6 Hrs / 80 Km</span> ₹2000</li>
+                    <li><span>8 Hrs / 100 Km</span> ₹2500</li>
+                    <li><span>10 Hrs / 120 Km</span> ₹3000</li>
+                    <li><span>12 Hrs / 150 Km</span> ₹3700</li>
+                  </ul>
+                  <div className="pricing-extra">
+                    <small>Addl. KM: ₹13 | Addl. Hr: ₹200</small>
+                  </div>
+                </div>
+                <div className="pricing-column">
+                  <h4>6 Seater</h4>
+                  <ul>
+                    <li><span>3 Hrs / 30 Km</span> ₹1600</li>
+                    <li><span>6 Hrs / 80 Km</span> ₹2600</li>
+                    <li><span>8 Hrs / 100 Km</span> ₹3500</li>
+                    <li><span>10 Hrs / 120 Km</span> ₹4200</li>
+                    <li><span>12 Hrs / 150 Km</span> ₹5000</li>
+                  </ul>
+                  <div className="pricing-extra">
+                    <small>Addl. KM: ₹18 | Addl. Hr: ₹300</small>
+                  </div>
+                </div>
+              </div>
+
+              <button className="book-cab-btn">Book a Cab</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   )
 }

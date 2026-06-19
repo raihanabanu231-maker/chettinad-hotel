@@ -5,7 +5,7 @@ import './AmenitiesModal.css'
 export default function AmenitiesModal({ onClose }) {
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content amenities-modal glass-panel" onClick={e => e.stopPropagation()}>
+      <div className="modal-content amenities-modal neo-panel" onClick={e => e.stopPropagation()}>
         <div className="modal-header-sticky">
           <button className="modal-close-sticky" onClick={onClose}><X size={20} /></button>
         </div>

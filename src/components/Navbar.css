@@ -4,21 +4,16 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  padding: 1.25rem 0;
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 0.75rem 0;
+  background: var(--bg-neo);
+  border-bottom: 1px solid var(--border-color);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
 }
 
 .navbar.scrolled {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: var(--shadow-hover);
+  background: var(--bg-neo-card);
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.08);
 }
 
 .nav-container {
@@ -32,25 +27,7 @@
   align-items: center;
 }
 
-.logo-text {
-  display: flex;
-  flex-direction: column;
-}
 
-.logo-text h1 {
-  margin: 0;
-  font-size: 1.5rem;
-  color: var(--primary);
-  line-height: 1;
-}
-
-.logo-text span {
-  font-size: 0.6rem;
-  letter-spacing: 0.2em;
-  color: var(--text-main);
-  text-transform: uppercase;
-  margin-top: 2px;
-}
 
 .nav-center {
   display: flex;
@@ -70,7 +47,12 @@
   transition: all 0.3s ease;
 }
 
-.nav-center a.active, .nav-center a:hover, .nav-center button.active, .nav-center button:hover {
+.nav-center a:hover, .nav-center button:hover {
+  color: var(--primary);
+  background-color: rgba(139, 94, 60, 0.05);
+}
+
+.nav-center a.active, .nav-center button.active {
   background-color: var(--primary);
   color: var(--white);
 }
@@ -111,7 +93,7 @@
   min-width: 200px;
   display: flex;
   flex-direction: column;
-  padding: 0.5rem 0;
+  padding: 0.5rem;
   border-radius: 16px;
   overflow: hidden;
   z-index: 1000;
@@ -133,6 +115,7 @@
 
 .profile-dropdown a:hover,
 .profile-dropdown button:hover {
-  background-color: rgba(139, 94, 60, 0.1);
-  color: var(--primary);
+  background-color: var(--primary);
+  color: var(--white);
+  border-radius: 8px;
 }
