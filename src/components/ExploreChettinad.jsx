@@ -1,7 +1,7 @@
-import React, { useRef, useState } from 'react'
-import { ChevronRight, ChevronLeft, CheckCircle, Landmark, UtensilsCrossed, ShoppingBag, Sparkles } from 'lucide-react'
-import kpmLogo from '../assets/kpm-logo.png'
-import './ExploreChettinad.css'
+import React, { useRef, useState } from 'react';
+import { ChevronRight, ChevronLeft, Phone, X, CarFront } from 'lucide-react';
+import kpmLogo from '../assets/kpm-logo.png';
+import './ExploreChettinad.css';
 
 const attractions = [
   {
@@ -59,12 +59,19 @@ export default function ExploreChettinad() {
   const scrollRef = useRef(null);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleScroll = () => {
     if (scrollRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
       setShowLeftArrow(scrollLeft > 0);
       setShowRightArrow(Math.ceil(scrollLeft + clientWidth) < scrollWidth);
+
+      // Calculate active index for pagination
+      const cardWidth = 280 + 24; // width + gap
+      const newIndex = Math.round(scrollLeft / cardWidth);
+      setActiveIndex(Math.min(newIndex, attractions.length - 1));
     }
   };
 
@@ -77,133 +84,161 @@ export default function ExploreChettinad() {
   };
 
   return (
-    <section id="explore" className="explore-section">
+    <section id="explore" className="explore-section-compact">
       <div className="container">
-        <div className="explore-layout">
-          {/* LEFT SIDE - Attractions */}
-          <div className="explore-left">
-            <div className="explore-header">
-              <h2 className="section-title-left">Explore Chettinad</h2>
-              <div className="title-divider"></div>
-              <p className="explore-subtitle">Discover the rich heritage, culture and timeless beauty of Chettinad.</p>
-            </div>
-            
-            <div className="carousel-container">
-              {showLeftArrow && (
-                <button className="carousel-arrow left" onClick={() => scroll('left')}>
-                  <ChevronLeft size={24} />
-                </button>
-              )}
-              
-              <div 
-                className="carousel-track" 
-                ref={scrollRef} 
-                onScroll={handleScroll}
-              >
-                {attractions.map(place => (
-                  <div key={place.id} className="carousel-card neo-panel">
-                    <img src={place.image} alt={place.name} />
-                    <div className="carousel-info">
-                      <h3>{place.name}</h3>
-                      <span className="carousel-distance">Distance: {place.distance}</span>
-                      <p>{place.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+        
+        {/* SECTION HEADER */}
+        <div className="explore-header-center">
+          <h2 className="explore-title">Explore Chettinad</h2>
+          <div className="explore-divider">──── ❦ ────</div>
+          <p className="explore-tagline">
+            Discover the rich heritage, culture and timeless beauty of Chettinad.
+          </p>
+        </div>
 
-              {showRightArrow && (
-                <button className="carousel-arrow right" onClick={() => scroll('right')}>
-                  <ChevronRight size={24} />
-                </button>
-              )}
-            </div>
-
-            {/* Experience Category Section */}
-            <div className="experience-categories">
-              <div className="experience-card">
-                <div className="exp-icon"><Landmark size={24} /></div>
-                <h4>Heritage & Culture</h4>
-                <p>Explore centuries of royal heritage.</p>
+        {/* PLACES CAROUSEL */}
+        <div className="carousel-wrapper">
+          {showLeftArrow && (
+            <button className="nav-arrow left" onClick={() => scroll('left')}>
+              <ChevronLeft size={28} />
+            </button>
+          )}
+          
+          <div className="carousel-track-horizontal" ref={scrollRef} onScroll={handleScroll}>
+            {attractions.map(place => (
+              <div key={place.id} className="place-card">
+                <img src={place.image} alt={place.name} className="place-image" />
+                <div className="place-content">
+                  <h3>{place.name}</h3>
+                  <span className="place-distance">📍 {place.distance}</span>
+                  <p className="place-description">{place.description}</p>
+                </div>
               </div>
-              <div className="experience-card">
-                <div className="exp-icon"><UtensilsCrossed size={24} /></div>
-                <h4>Local Cuisine</h4>
-                <p>Enjoy authentic Chettinad delicacies.</p>
-              </div>
-              <div className="experience-card">
-                <div className="exp-icon"><ShoppingBag size={24} /></div>
-                <h4>Shopping</h4>
-                <p>Handicrafts, antiques and local specialties.</p>
-              </div>
-              <div className="experience-card">
-                <div className="exp-icon"><Sparkles size={24} /></div>
-                <h4>Memorable Experiences</h4>
-                <p>Create unforgettable memories.</p>
-              </div>
-            </div>
+            ))}
           </div>
 
-          {/* RIGHT SIDE - Cab Booking */}
-          <div className="explore-right">
-            <div className="cab-booking-card kpm-card">
-              <div className="cab-header-new">
-                <h3>Travel Around Chettinad</h3>
+          {showRightArrow && (
+            <button className="nav-arrow right" onClick={() => scroll('right')}>
+              <ChevronRight size={28} />
+            </button>
+          )}
+        </div>
+
+        {/* PAGINATION DOTS */}
+        <div className="pagination-dots">
+          {attractions.map((_, index) => (
+            <span 
+              key={index} 
+              className={`dot ${index === activeIndex ? 'active' : ''}`}
+              onClick={() => {
+                if (scrollRef.current) {
+                  const cardWidth = 280 + 24;
+                  scrollRef.current.scrollTo({ left: index * cardWidth, behavior: 'smooth' });
+                }
+              }}
+            >
+              {index === activeIndex ? '●' : '○'}
+            </span>
+          ))}
+        </div>
+
+        {/* BOOK CAB SECTION */}
+        <div className="book-cab-bar">
+          <div className="book-cab-left">
+            <CarFront size={90} strokeWidth={1} color="rgba(255,255,255,0.2)" className="car-illustration-bg" />
+            <img src={kpmLogo} alt="KPM" className="kpm-small-logo" />
+          </div>
+          <div className="book-cab-center">
+            <h3>Book a Cab</h3>
+            <p>Travel around Chettinad comfortably with KPM Travels.</p>
+          </div>
+          <div className="book-cab-right">
+            <button className="book-now-btn" onClick={() => setIsModalOpen(true)}>BOOK NOW</button>
+          </div>
+        </div>
+
+      </div>
+
+      {/* CAB DETAILS MODAL */}
+      {isModalOpen && (
+        <div className="cab-modal-backdrop" onClick={() => setIsModalOpen(false)}>
+          <div className="cab-modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <div className="modal-header-left">
+                <h2>🚗 Travel Around Chettinad</h2>
                 <p>Book a comfortable ride and explore more.</p>
               </div>
-              <div className="cab-branding">
-                <img src={kpmLogo} alt="KPM Travels" className="kpm-logo" />
-              </div>
+              <button className="close-modal-btn" onClick={() => setIsModalOpen(false)}>
+                <X size={24} />
+              </button>
+            </div>
 
-              <div className="cab-hero">
-                <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80" alt="Travel Vehicles" className="cab-hero-img" />
+            <div className="modal-body">
+              <div className="modal-kpm-info">
+                <img src={kpmLogo} alt="KPM Travels" className="modal-logo" />
               </div>
-
-              <div className="cab-services">
-                <div className="service-item"><CheckCircle size={16} /> Local Sightseeing</div>
-                <div className="service-item"><CheckCircle size={16} /> Temple Tours</div>
-                <div className="service-item"><CheckCircle size={16} /> Airport Pickup</div>
-                <div className="service-item"><CheckCircle size={16} /> Heritage Tours</div>
-                <div className="service-item"><CheckCircle size={16} /> Family Travel</div>
-              </div>
-
-              <div className="cab-pricing">
-                <div className="pricing-column">
-                  <h4>4 Seater</h4>
-                  <ul>
-                    <li><span>3 Hrs / 30 Km</span> ₹1200</li>
-                    <li><span>6 Hrs / 80 Km</span> ₹2000</li>
-                    <li><span>8 Hrs / 100 Km</span> ₹2500</li>
-                    <li><span>10 Hrs / 120 Km</span> ₹3000</li>
-                    <li><span>12 Hrs / 150 Km</span> ₹3700</li>
-                  </ul>
-                  <div className="pricing-extra">
-                    <small>Addl. KM: ₹13 | Addl. Hr: ₹200</small>
-                  </div>
+              
+              <div className="vehicle-images">
+                <div className="vehicle">
+                  <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80" alt="4 Seater Car" />
+                  <span>4 Seater</span>
                 </div>
-                <div className="pricing-column">
-                  <h4>6 Seater</h4>
-                  <ul>
-                    <li><span>3 Hrs / 30 Km</span> ₹1600</li>
-                    <li><span>6 Hrs / 80 Km</span> ₹2600</li>
-                    <li><span>8 Hrs / 100 Km</span> ₹3500</li>
-                    <li><span>10 Hrs / 120 Km</span> ₹4200</li>
-                    <li><span>12 Hrs / 150 Km</span> ₹5000</li>
-                  </ul>
-                  <div className="pricing-extra">
-                    <small>Addl. KM: ₹18 | Addl. Hr: ₹300</small>
-                  </div>
+                <div className="vehicle">
+                  <img src="https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&q=80" alt="6 Seater Car" />
+                  <span>6 Seater</span>
                 </div>
               </div>
 
-              <div className="cab-terms" style={{textAlign: 'center', fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '-0.5rem', marginTop: '-0.5rem'}}>
-                *Terms and Conditions apply. Subject to vehicle availability.
+              <div className="tariff-section">
+                <table className="tariff-table">
+                  <thead>
+                    <tr>
+                      <th>Hours</th>
+                      <th>Kms</th>
+                      <th>4 Seater</th>
+                      <th>6 Seater</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>3</td><td>30</td><td>₹1200</td><td>₹1600</td></tr>
+                    <tr><td>6</td><td>80</td><td>₹2000</td><td>₹2600</td></tr>
+                    <tr><td>8</td><td>100</td><td>₹2500</td><td>₹3500</td></tr>
+                    <tr><td>10</td><td>120</td><td>₹3000</td><td>₹4200</td></tr>
+                    <tr><td>12</td><td>150</td><td>₹3700</td><td>₹5000</td></tr>
+                  </tbody>
+                </table>
+                
+                <div className="additional-charges">
+                  <div className="charge-column">
+                    <strong>Additional KM:</strong>
+                    <span>4 Seater: ₹13</span>
+                    <span>6 Seater: ₹18</span>
+                  </div>
+                  <div className="charge-column">
+                    <strong>Additional Hour:</strong>
+                    <span>4 Seater: ₹200</span>
+                    <span>6 Seater: ₹300</span>
+                  </div>
+                  <div className="charge-column">
+                    <strong>Day Rental:</strong>
+                    <span>4 Seater: ₹2500</span>
+                    <span>6 Seater: ₹3500</span>
+                  </div>
+                </div>
               </div>
-              <button className="book-cab-btn">Book a Cab</button>
+            </div>
+
+            <div className="modal-footer">
+              <div className="call-now-container">
+                <span className="call-now-label"><Phone size={24} /> CALL NOW:</span>
+                <a href="tel:+919443102599" className="call-link">+91 9443102599</a>
+                <span className="call-separator">|</span>
+                <a href="tel:+919865354433" className="call-link">+91 9865354433</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </section>
-  )
+  );
 }
