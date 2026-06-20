@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { ChevronRight, ChevronLeft, Phone, X, CarFront } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Phone, X, Car } from 'lucide-react';
 import kpmLogo from '../assets/kpm-logo.png';
 import './ExploreChettinad.css';
 
@@ -90,7 +90,7 @@ export default function ExploreChettinad() {
         {/* SECTION HEADER */}
         <div className="explore-header-center">
           <h2 className="explore-title">Explore Chettinad</h2>
-          <div className="explore-divider">──── ❦ ────</div>
+          <div className="explore-divider">──────── ❦ ────────</div>
           <p className="explore-tagline">
             Discover the rich heritage, culture and timeless beauty of Chettinad.
           </p>
@@ -145,8 +145,7 @@ export default function ExploreChettinad() {
         {/* BOOK CAB SECTION */}
         <div className="book-cab-bar">
           <div className="book-cab-left">
-            <CarFront size={90} strokeWidth={1} color="rgba(255,255,255,0.2)" className="car-illustration-bg" />
-            <img src={kpmLogo} alt="KPM" className="kpm-small-logo" />
+            <Car fill="white" color="white" size={32} />
           </div>
           <div className="book-cab-center">
             <h3>Book a Cab</h3>
