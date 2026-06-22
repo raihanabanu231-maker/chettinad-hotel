@@ -61,7 +61,6 @@
   padding: 10px 0 25px 0;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
-  height: 360px;
   align-items: flex-start;
 }
 .carousel-track-horizontal::-webkit-scrollbar {
@@ -77,43 +76,50 @@
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
   transition: transform 0.3s ease;
   cursor: pointer;
-  height: 100%;
+  height: 410px;
   display: flex;
   flex-direction: column;
 }
 .place-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-6px);
 }
 .place-image {
   width: 100%;
-  height: 190px;
+  height: 200px;
   object-fit: cover;
   border-radius: 20px 20px 0 0;
 }
 .place-content {
   padding: 20px;
-  flex: 1;
+  height: 180px;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
 .place-content h3 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 34px;
+  font-size: 28px;
+  font-weight: 600;
   color: #8B5E3C;
-  margin: 0 0 5px 0;
-  line-height: 1.1;
+  margin: 0 0 10px 0;
+  line-height: 1.2;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .place-distance {
   font-family: 'Inter', sans-serif;
-  font-size: 16px;
-  color: #5F5F5F;
-  margin-bottom: 10px;
+  font-size: 15px;
+  color: #666666;
+  margin-bottom: 12px;
   font-weight: 500;
+  display: block;
 }
 .place-description {
   font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  color: #444;
+  font-size: 16px;
+  color: #555555;
   line-height: 1.5;
   margin: 0;
   display: -webkit-box;
